@@ -1,0 +1,25 @@
+{
+  "_note": "Replace the placeholder values below with your actual affiliate IDs after signing up for each program.",
+  "taskade": "YOUR_TASKADE_ID",
+  "reclaim": "YOUR_RECLAIM_ID",
+  "simplified": "YOUR_SIMPLIFIED_ID",
+  "veed": "YOUR_VEED_ID",
+  "elevenlabs": "YOUR_ELEVENLABS_ID",
+  "logome": "YOUR_LOGOME_ID",
+  "meetgeek": "YOUR_MEETGEEK_ID",
+  "castmagic": "YOUR_CASTMAGIC_ID",
+  "gamma": "YOUR_GAMMA_ID",
+  "clickup": "YOUR_CLICKUP_ID",
+  "_links": {
+    "taskade": "https://partners.taskade.com/",
+    "reclaim": "https://market.partnerstack.com/artificial-intelligence/reclaim",
+    "simplified": "https://simplified.com/affiliate-program",
+    "veed": "https://veed.io/referral-program",
+    "elevenlabs": "https://elevenlabs.io/affiliates-terms",
+    "logome": "https://logome.ai/affiliates",
+    "meetgeek": "https://market.partnerstack.com/artificial-intelligence/meetgeek",
+    "castmagic": "https://market.partnerstack.com/artificial-intelligence/castmagic",
+    "gamma": "https://market.partnerstack.com/artificial-intelligence/gammaapp",
+    "clickup": "https://market.partnerstack.com/artificial-intelligence/clickup"
+  }
+}

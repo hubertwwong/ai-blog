@@ -1,0 +1,17 @@
+{
+  "name": "aitools-directory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "./deploy.sh",
+    "preview": "npx wrangler pages dev .",
+    "start": "npx http-server . -p 8800"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^4.107.0"
+  }
+}
