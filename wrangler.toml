@@ -1,2 +1,6 @@
 name = "ai-blog"
-pages_build_output_dir = "."
+compatibility_date = "2026-07-04"
+
+[assets]
+directory = "."
+not_found_handling = "404-page"
