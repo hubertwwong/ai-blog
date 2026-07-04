@@ -1,0 +1,28 @@
+{{ define "title" }}{{ .Title }} — {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<section style="margin-bottom:30px;">
+  <h1>{{ .Title }}</h1>
+  <p class="subtitle">{{ len .Pages }} article{{ if ne (len .Pages) 1 }}s{{ end }}</p>
+</section>
+
+<section class="articles-list">
+  {{ range .Paginator.Pages }}
+  <article class="article-item" style="background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:16px;">
+    <div style="font-size:.85rem; color:var(--muted); margin-bottom:4px;">{{ .Date.Format "Jan 2, 2006" }}</div>
+    <h2 style="margin:0 0 6px; font-size:1.1rem;"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <p style="color:var(--muted); margin:0;">{{ .Summary | plainify | truncate 120 }}</p>
+  </article>
+  {{ end }}
+</section>
+
+<nav class="pagination" style="display:flex; justify-content:center; gap:16px; margin:40px 0; font-size:.9rem;">
+  {{ if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL }}">← Previous</a>
+  {{ end }}
+  <span style="color:var(--muted);">Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span>
+  {{ if .Paginator.HasNext }}
+    <a href="{{ .Paginator.Next.URL }}">Next →</a>
+  {{ end }}
+</nav>
+{{ end }}
