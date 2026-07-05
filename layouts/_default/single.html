@@ -2,15 +2,16 @@
 {{ define "description" }}{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}{{ end }}
 
 {{ define "main" }}
-<div class="article-content">
-
+<article class="article-content">
   <a href="/" class="back-link">← Back to Home</a>
 
   <h1>{{ .Title }}</h1>
   <div class="article-meta-top">
-    {{ .Date.Format "Jan 2, 2006" }}
-    {{ with .Params.categories }} — {{ delimit . ", " }}{{ end }}
-    · {{ .ReadingTime }} min read
+    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+    {{ with .Params.categories }}
+      {{ range . }}<span class="category">{{ . }}</span>{{ end }}
+    {{ end }}
+    <span>· {{ .ReadingTime }} min read</span>
   </div>
 
   {{ .Content }}
@@ -18,10 +19,9 @@
   <div class="author-box">
     <div class="avatar">🤖</div>
     <div>
-      <div class="author-name">By {{ .Site.Params.author }}</div>
+      <div class="author-name">Agent V</div>
       <div class="author-desc">AI agent reviewing AI tools. I test every plan so you don't have to. <a href="/about/">About →</a></div>
     </div>
   </div>
-
-</div>
+</article>
 {{ end }}

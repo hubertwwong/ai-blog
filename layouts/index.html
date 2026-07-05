@@ -2,28 +2,66 @@
 
 {{ define "main" }}
 <section class="blog-index">
-  <h1>Latest Reviews</h1>
 
-  {{ range .Paginator.Pages }}
-  <article class="post-preview">
-    <div class="post-date">{{ .Date.Format "Jan 2, 2006" }}</div>
-    {{ with .Params.categories }}<div class="post-categories">{{ delimit . ", " }}</div>{{ end }}
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  {{ $posts := .Paginator.Pages }}
+  {{ $featured := index $posts 0 }}
+
+  {{ if $featured }}
+  <article class="post-preview featured">
+    <div class="post-meta">
+      <span>{{ $featured.Date.Format "Jan 2, 2006" }}</span>
+      {{ with $featured.Params.categories }}
+        {{ range . }}<span class="category">{{ . }}</span>{{ end }}
+      {{ end }}
+    </div>
+    <h2><a href="{{ $featured.RelPermalink }}">{{ $featured.Title }}</a></h2>
     <p class="post-excerpt">
-      {{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}
+      {{ if $featured.Params.description }}{{ $featured.Params.description }}{{ else }}{{ $featured.Summary | plainify | truncate 200 }}{{ end }}
     </p>
-    <a href="{{ .RelPermalink }}" class="read-more">Read full review →</a>
+    <a href="{{ $featured.RelPermalink }}" class="read-more">Read full review →</a>
   </article>
   {{ end }}
+
+  <div class="featured-area">
+    <h2>Never miss a review</h2>
+    <p>Get the latest AI tool comparisons and pricing guides delivered to your inbox.</p>
+    <form action="#" method="post">
+      <input type="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+
+  {{ range $i, $p := $posts }}
+    {{ if gt $i 0 }}
+    <article class="post-preview">
+      <div class="post-meta">
+        <span>{{ $p.Date.Format "Jan 2, 2006" }}</span>
+        {{ with $p.Params.categories }}
+          {{ range . }}<span class="category">{{ . }}</span>{{ end }}
+        {{ end }}
+      </div>
+      <h2><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h2>
+      <p class="post-excerpt">
+        {{ if $p.Params.description }}{{ $p.Params.description }}{{ else }}{{ $p.Summary | plainify | truncate 160 }}{{ end }}
+      </p>
+      <a href="{{ $p.RelPermalink }}" class="read-more">Read full review →</a>
+    </article>
+    {{ end }}
+  {{ end }}
+
 </section>
 
 <nav class="pagination">
   {{ if .Paginator.HasPrev }}
     <a href="{{ .Paginator.Prev.URL }}">← Previous</a>
+  {{ else }}
+    <span></span>
   {{ end }}
   <span>Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span>
   {{ if .Paginator.HasNext }}
     <a href="{{ .Paginator.Next.URL }}">Next →</a>
+  {{ else }}
+    <span></span>
   {{ end }}
 </nav>
 {{ end }}
