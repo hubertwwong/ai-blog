@@ -1,0 +1,147 @@
+/* ─── Reset & Base ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1117;  --surface: #1a1d28;  --border: #2a2d3a;
+  --text: #e4e6ef;  --muted: #888ba0;  --accent: #6c5ce7;
+  --accent-hover: #7f6ff0;  --green: #00cec9;  --orange: #fdcb6e;
+  --radius: 12px;  --shadow: 0 4px 24px rgba(0,0,0,.3);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+  background: var(--bg);  color: var(--text);  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+img { max-width: 100%; height: auto; }
+
+/* ─── Layout ─── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ─── Header ─── */
+header {
+  padding: 60px 0 40px;  text-align: center;
+  border-bottom: 1px solid var(--border);  margin-bottom: 50px;
+}
+header h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; }
+header h1 span { color: var(--accent); }
+header p { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto; }
+header .disclosure {
+  margin-top: 16px;  font-size: .8rem;  color: var(--muted);
+  background: var(--surface);  padding: 8px 16px;  border-radius: 8px;
+  display: inline-block;
+}
+
+/* ─── Category Sections ─── */
+.category { margin-bottom: 60px; }
+.category h2 {
+  font-size: 1.5rem;  font-weight: 700;  margin-bottom: 8px;
+  padding-bottom: 12px;  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+.category .subtitle { color: var(--muted); margin-bottom: 24px; font-size: .9rem; }
+
+/* ─── Tool Cards Grid ─── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+.tool-card {
+  background: var(--surface);  border: 1px solid var(--border);
+  border-radius: var(--radius);  padding: 24px;
+  transition: transform .2s, box-shadow .2s;
+  display: flex;  flex-direction: column;
+}
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+.tool-card .tool-header {
+  display: flex;  align-items: flex-start;  gap: 16px;  margin-bottom: 14px;
+}
+.tool-card .tool-icon {
+  width: 44px;  height: 44px;  border-radius: 10px;
+  display: flex;  align-items: center;  justify-content: center;
+  font-size: 1.3rem;  flex-shrink: 0;
+}
+.tool-card .tool-name { font-size: 1.1rem; font-weight: 700; }
+.tool-card .tool-tagline { font-size: .85rem; color: var(--muted); margin-top: 2px; }
+.tool-card .tool-desc { font-size: .9rem; color: var(--text); margin-bottom: 14px; flex-grow: 1; }
+.tool-card .tool-meta {
+  display: flex;  flex-wrap: wrap;  gap: 8px;  margin-bottom: 16px;
+  font-size: .8rem;
+}
+.tool-card .tool-meta span {
+  background: rgba(108,92,231,.15);  color: var(--accent);
+  padding: 3px 10px;  border-radius: 20px;
+}
+.tool-card .tool-commission {
+  font-size: .85rem;  font-weight: 600;  color: var(--green);
+  padding: 6px 0;  margin-bottom: 14px;
+  border-top: 1px solid var(--border);  padding-top: 14px;
+}
+.tool-card .btn {
+  display: inline-block;  background: var(--accent);  color: #fff;
+  padding: 10px 20px;  border-radius: 8px;  font-weight: 600;
+  font-size: .9rem;  text-align: center;  transition: background .2s;
+}
+.tool-card .btn:hover { background: var(--accent-hover); color: #fff; }
+.tool-card .btn-alt {
+  display: inline-block;  background: transparent;  color: var(--text);
+  padding: 8px 16px;  border-radius: 8px;  font-size: .85rem;
+  border: 1px solid var(--border);  text-align: center;  transition: background .2s;
+}
+.tool-card .btn-alt:hover { background: var(--surface); color: var(--accent); border-color: var(--accent); }
+.tool-card .btn-row { display: flex; gap: 8px; margin-top: auto; }
+
+/* ─── Comparison Table ─── */
+.comparison-wrapper { overflow-x: auto; }
+.comparison-table {
+  width: 100%;  border-collapse: collapse;
+  background: var(--surface);  border-radius: var(--radius);
+  overflow: hidden;  font-size: .9rem;
+}
+.comparison-table th {
+  background: var(--accent);  color: #fff;  padding: 14px 16px;
+  text-align: left;  font-weight: 600;
+}
+.comparison-table td {
+  padding: 12px 16px;  border-bottom: 1px solid var(--border);
+}
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover td { background: rgba(108,92,231,.05); }
+.comparison-table .comm-rate { color: var(--green); font-weight: 600; }
+
+/* ─── Articles Section ─── */
+.articles-list { display: flex; flex-direction: column; gap: 16px; }
+.article-item {
+  background: var(--surface);  border: 1px solid var(--border);
+  border-radius: var(--radius);  padding: 24px;
+  transition: transform .2s, box-shadow .2s;
+}
+.article-item:hover {
+  transform: translateY(-2px);  box-shadow: var(--shadow);
+}
+.article-item h3 { font-size: 1.1rem; margin-bottom: 6px; }
+.article-item .article-meta {
+  font-size: .8rem;  color: var(--muted);  margin-bottom: 8px;
+}
+.article-item p { font-size: .9rem; color: var(--muted); margin-bottom: 12px; }
+.article-item .read-more { font-size: .85rem; font-weight: 600; }
+
+/* ─── Footer ─── */
+footer {
+  margin-top: 80px;  padding: 40px 0;  text-align: center;
+  border-top: 1px solid var(--border);  color: var(--muted); font-size: .85rem;
+}
+footer a { color: var(--muted); }
+footer a:hover { color: var(--accent); }
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  header h1 { font-size: 1.6rem; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .tool-card .tool-header { flex-wrap: wrap; }
+  header { padding: 40px 0 24px; }
+}
