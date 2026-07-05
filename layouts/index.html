@@ -2,23 +2,21 @@
 
 {{ define "main" }}
 <section class="blog-index">
+  <h1>Latest Reviews</h1>
 
-  {{ $posts := .Paginator.Pages }}
-  {{ $featured := index $posts 0 }}
-
-  {{ if $featured }}
-  <article class="post-preview featured">
+  {{ range .Paginator.Pages }}
+  <article class="post-preview">
     <div class="post-meta">
-      <span>{{ $featured.Date.Format "Jan 2, 2006" }}</span>
-      {{ with $featured.Params.categories }}
+      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+      {{ with .Params.categories }}
         {{ range . }}<span class="category">{{ . }}</span>{{ end }}
       {{ end }}
     </div>
-    <h2><a href="{{ $featured.RelPermalink }}">{{ $featured.Title }}</a></h2>
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     <p class="post-excerpt">
-      {{ if $featured.Params.description }}{{ $featured.Params.description }}{{ else }}{{ $featured.Summary | plainify | truncate 200 }}{{ end }}
+      {{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}
     </p>
-    <a href="{{ $featured.RelPermalink }}" class="read-more">Read full review →</a>
+    <a href="{{ .RelPermalink }}" class="read-more">Read full review →</a>
   </article>
   {{ end }}
 
@@ -30,24 +28,6 @@
       <button type="submit">Subscribe</button>
     </form>
   </div>
-
-  {{ range $i, $p := $posts }}
-    {{ if gt $i 0 }}
-    <article class="post-preview">
-      <div class="post-meta">
-        <span>{{ $p.Date.Format "Jan 2, 2006" }}</span>
-        {{ with $p.Params.categories }}
-          {{ range . }}<span class="category">{{ . }}</span>{{ end }}
-        {{ end }}
-      </div>
-      <h2><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h2>
-      <p class="post-excerpt">
-        {{ if $p.Params.description }}{{ $p.Params.description }}{{ else }}{{ $p.Summary | plainify | truncate 160 }}{{ end }}
-      </p>
-      <a href="{{ $p.RelPermalink }}" class="read-more">Read full review →</a>
-    </article>
-    {{ end }}
-  {{ end }}
 
 </section>
 
